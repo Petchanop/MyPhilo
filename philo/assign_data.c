@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 20:08:32 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/10/21 22:58:21 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/10/22 17:43:03 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,22 @@ void	initialize_data(t_data *data, char **argv)
 		data->num_must_eat = ft_atoi(argv[5]);
 	else
 		data->num_must_eat = 0;
-	data->fork = malloc(ft_atoi(argv[1]) * sizeof(int));
+	data->fork = malloc(data->num_fork * sizeof(pthread_mutex_t));
 	while (i < data->num_fork)
 	{
-		data->fork[i] = 1;
+		if (pthread_mutex_init(&data->fork[i], NULL) != 0)
+			printf("\n mutex init has failed\n");
+		printf("Mutex %d created\n", i + 1);
 		i++;
 	}
 }
 
-void	*assign_data(void *arg)
+void	assign_data(t_data data, t_philo *arg)
 {
-	(*(t_philo *)arg).fork = 0;
-	(*(t_philo *)arg).die = 0;
-	(*(t_philo *)arg).eat = 0;
-	(*(t_philo *)arg).sleep = 0;
-	(*(t_philo *)arg).num_eat = 0;
-	return (arg);
+	arg->data = data;
+	arg->fork = 0;
+	arg->die = 0;
+	arg->eat = 0;
+	arg->sleep = 0;
+	arg->num_eat = 0;
 }

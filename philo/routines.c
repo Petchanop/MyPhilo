@@ -6,62 +6,76 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:43:29 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/10/21 23:44:09 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/10/22 20:27:26 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	take_fork(t_data *data, t_philo *philo)
+void	take_fork(void *arg)
 {
-	pthread_mutex_t	lock;
+	int				fork;
+	t_philo			*philo;
 
-	lock = philo->lock;
-	pthread_mutex_lock(&lock);
-	if (data->fork[philo->id - 1] != 0 && data->fork[philo->id] != 0)
+	philo = (t_philo *)arg;
+	//printf("%d ms ", philo->data.time);
+	fork = philo->data.num_fork;
+	pthread_mutex_lock(&philo->data.fork[philo->id - 1]);
+	pthread_mutex_lock(&philo->data.fork[philo->id % fork]);
+	printf("%d ms ", philo->data.time);
+	philo->fork++;
+	printf("%d has taken a fork\n", philo->id);
+	philo->fork++;
+	printf("%d ms ", philo->data.time);
+	printf("%d has taken a fork\n", philo->id);
+	eating(philo);
+	pthread_mutex_unlock(&philo->data.fork[philo->id - 1]);
+	pthread_mutex_unlock(&philo->data.fork[philo->id % fork]);
+}
+
+void	eating(t_philo *philo)
+{
+	if (philo->fork == 2)
 	{
-		data->fork[philo->id - 1] = 0;
-		data->fork[philo->id] = 0;
-		printf("%d has taken a fork\n", philo->id);
-		philo->fork += 2;
-		data->num_fork -= 2;
+		usleep(philo->data.time_to_eat * 1000);
+		printf("%d ms ", philo->data.time);
+		printf("%d is eating\n", philo->id);
+		philo->fork = 0;
 	}
-	//printf("num fork : %d\n", data->num_fork);
-	pthread_mutex_unlock(&lock);
 }
 
-void	sleeping(int arg)
+void	sleeping(t_philo *philo)
 {
-	printf("%d is sleeping\n", arg);
+	printf("%d ms ", philo->data.time);
+	usleep(philo->data.time_to_sleep * 1000);
+	printf("%d is sleeping\n", philo->id);
+	philo->time_not_eat += philo->data.time;
 }
 
-void	thinking(int arg)
+void	thinking(t_philo *philo)
 {
-	printf("%d is thinking\n", arg);
+	printf("%d ms ", philo->data.time);
+	printf("%d is thinking\n", philo->id);
+	philo->time_not_eat += philo->data.time / 1000;
 }
 
-void	do_others(int arg)
+void	do_others(t_philo *philo)
 {
-	if (arg % 2 == 0)
-		sleeping(arg);
-	else if (arg % 2 != 0)
-		thinking(arg);
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	if (time.tv_usec % 2 == 0)
+		sleeping(philo);
+	else if (time.tv_usec % 2 != 0)
+		thinking(philo);
 }
 
-void	*excute_routines(t_data data, t_philo *philo)
+void	*excute_routines(void *arg)
 {
-	int	i;
-	// struct timeval begin;
-	// struct timeval end;
+	t_philo	*philo;
 
-	i = 0;
-	printf("philo : %d\n", data.num_philo);
-	while (i < data.num_philo && data.num_fork)
-	{
-		take_fork(&data, &philo[i]);
-		printf("fork : %d\n", data.num_fork);
-		i++;
-	}
-	// do_others();
+	philo = (t_philo *)arg;
+	take_fork(arg);
+	do_others(philo);
 	return (NULL);
 }

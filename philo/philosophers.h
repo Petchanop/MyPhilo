@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:22:46 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/10/21 23:05:22 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/10/22 20:28:43 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,24 @@
 
 typedef struct s_data
 {
-	int	num_fork;
-	int	num_philo;
-	int	*fork;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	num_must_eat;	
+	pthread_mutex_t	*fork;
+	int				num_fork;
+	int				num_philo;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				num_must_eat;
+	struct timeval	begin;
+	int				time;
 }	t_data;
 
 typedef struct s_philo
 {
 	pthread_t		philo;
-	pthread_mutex_t	lock;
+	t_data			data;
 	int				id;
 	int				fork;
+	int				time_not_eat;
 	int				die;
 	int				eat;
 	int				sleep;
@@ -44,10 +47,12 @@ typedef struct s_philo
 }	t_philo;
 
 void	initialize_data(t_data *data, char **argv);
-void	take_fork(t_data *data, t_philo *philo);
-void	*assign_data(void *arg);
+void	take_fork(void *arg);
+void	assign_data(t_data data, t_philo *arg);
 void	create_philo(t_data data, t_philo *th);
 void	do_routines(t_data data, t_philo *philo);
-void	*excute_routines(t_data data, t_philo *philo);
+void	*excute_routines(void *arg);
+void	eating(t_philo *philo);
+void	do_others(t_philo *philo);
 
 #endif
