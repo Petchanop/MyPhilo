@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:46:19 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/10/22 17:43:35 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/10/22 20:32:55 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	create_philo(t_data data, t_philo *th)
 	i = 0;
 	while (i < data.num_fork)
 	{
-		assign_data(data, &th[i]);
+		assign_data(&data, &th[i]);
 		th[i].id = i + 1;
 		i++;
 	}

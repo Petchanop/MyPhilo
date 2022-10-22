@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/08 01:28:49 by npiya-is          #+#    #+#              #
-#    Updated: 2022/10/21 22:47:51 by npiya-is         ###   ########.fr        #
+#    Updated: 2022/10/22 21:55:25 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ $(NAME):
 	$(CC) $(CFLAGS) $(SRCS) -o $(NAME) $(LIB_DIR) $(LIB)
 
 fclean:
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(NAME).dSYM
 
 re: fclean all
 

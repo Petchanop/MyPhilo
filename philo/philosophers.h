@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:22:46 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/10/22 20:28:43 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/10/22 20:34:03 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_philo
 
 void	initialize_data(t_data *data, char **argv);
 void	take_fork(void *arg);
-void	assign_data(t_data data, t_philo *arg);
+void	assign_data(t_data *data, t_philo *arg);
 void	create_philo(t_data data, t_philo *th);
 void	do_routines(t_data data, t_philo *philo);
 void	*excute_routines(void *arg);
