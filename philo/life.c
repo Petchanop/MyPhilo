@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 21:33:02 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/10/24 17:53:31 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/10/24 22:41:44 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	do_routines(t_data data, t_philo *th)
 {
 	int				i;
-	int				*res;
+	void			*res;
 	int				err;
 	struct timeval	begin;
 
@@ -29,29 +29,29 @@ void	do_routines(t_data data, t_philo *th)
 		err = pthread_create(&th[i].philo, NULL, &excute_routines, &th[i]);
 		if (err != 0)
 			printf("Can't create thread number %d\n", i);
-		usleep(500);
 		i++;
 	}
 	i = 0;
-	res = NULL;
+	res = 0;
 	while (1)
 	{
 		if (i < data.num_fork)
-			pthread_join(th[i].philo, (void *)res);
-		if (th[i].time_not_eat >= data.time_to_die)
-			break ;
-		if (i == data.num_fork)
-			i = 0;
-		printf("res : %d\n", *res);
-		if (*res)
+			pthread_join(th[i].philo, &res);
+		// if (i == data.num_fork)
+		// 	i = 0;
+		if (res)
 		{
-			printf("res : %d\n", *res);
-			// i = 0;
-			// while (i < data.num_fork)
-			// 	pthread_detach(th[i++].philo);
-			// break ;
+			print_time(&th[*(int *)res - 1]);
+			printf("%d died\n", *(int *)res);
+			i = 0;
+			while (i < data.num_fork)
+			{
+				pthread_detach(th[i].philo);
+				pthread_mutex_destroy(&th[i].data.fork[i]);
+				i++;
+			}
+			break ;
 		}
-		usleep(500);
 		i++;
 	}
 }

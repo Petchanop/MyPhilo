@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:43:29 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/10/24 17:54:34 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/10/24 22:33:38 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	eating(t_philo *philo)
 	fork = philo->fork;
 	if (philo->fork == 2)
 	{
-		usleep(philo->data.time_to_eat * 1000);
 		print_time(philo);
 		printf("%d is eating\n", philo->id);
+		usleep(philo->data.time_to_eat * 1000);
 		philo->time_eat = philo->data.time;
 		philo->time_not_eat = 0;
 		philo->fork = 0;
@@ -54,9 +54,9 @@ void	eating(t_philo *philo)
 
 void	sleeping(t_philo *philo)
 {
-	usleep(philo->data.time_to_sleep * 1000);
 	print_time(philo);
 	printf("%d is sleeping\n", philo->id);
+	usleep(philo->data.time_to_sleep * 1000);
 	philo->time_not_eat += philo->data.time - philo->time_eat;
 }
 
@@ -82,19 +82,14 @@ void	*excute_routines(void *arg)
 	re = NULL;
 	take_fork(arg);
 	do_others(philo);
-	usleep(200);
 	if (philo->time_not_eat >= philo->data.time_to_die)
 	{
-		if (!pthread_mutex_lock(&philo->data.lock))
-		{
-			re = malloc(sizeof(int));
-			print_time(philo);
-			*re = philo->id;
-			printf("%d died\n", *re);
-			pthread_mutex_unlock(&philo->data.lock);
-			pthread_mutex_destroy(&philo->data.lock);
-			return ((void *)re);
-		}
+		pthread_mutex_lock(&philo->data.lock);
+		re = malloc(sizeof(int));
+		*re = philo->id;
+		pthread_mutex_unlock(&philo->data.lock);
+		pthread_mutex_destroy(&philo->data.lock);
+		return ((void *)re);
 	}
 	return (NULL);
 }
