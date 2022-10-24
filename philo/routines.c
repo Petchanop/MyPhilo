@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:43:29 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/10/22 21:41:01 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/10/24 17:54:34 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,100 +16,85 @@ void	take_fork(void *arg)
 {
 	int				fork;
 	t_philo			*philo;
-	struct timeval	end;
-	int				time_sec;
-	int				time_usec;
 
 	philo = (t_philo *)arg;
 	fork = philo->data.num_fork;
 	pthread_mutex_lock(&philo->data.fork[philo->id - 1]);
-	gettimeofday(&end, NULL);
-	time_sec = (end.tv_sec - philo->data.begin.tv_sec) * 1000;
-	time_usec = (end.tv_usec - philo->data.begin.tv_usec) / 1000;
-	philo->data.time = time_sec + time_usec;
 	pthread_mutex_lock(&philo->data.fork[philo->id % fork]);
 	philo->fork++;
-	printf("%d ms ", philo->data.time);
+	print_time(philo);
 	printf("%d has taken a fork\n", philo->id);
-	gettimeofday(&end, NULL);
-	time_sec = (end.tv_sec - philo->data.begin.tv_sec) * 1000;
-	time_usec = (end.tv_usec - philo->data.begin.tv_usec) / 1000;
-	philo->data.time = time_sec + time_usec;
 	philo->fork++;
-	printf("%d ms ", philo->data.time);
+	print_time(philo);
 	printf("%d has taken a fork\n", philo->id);
+	usleep(5);
 	eating(philo);
 	pthread_mutex_unlock(&philo->data.fork[philo->id - 1]);
 	pthread_mutex_unlock(&philo->data.fork[philo->id % fork]);
+	return ;
 }
 
 void	eating(t_philo *philo)
 {
-	struct timeval	end;
-	int				time_sec;
-	int				time_usec;
+	int	fork;	
 
+	fork = philo->fork;
 	if (philo->fork == 2)
 	{
 		usleep(philo->data.time_to_eat * 1000);
-		gettimeofday(&end, NULL);
-		time_sec = (end.tv_sec - philo->data.begin.tv_sec) * 1000;
-		time_usec = (end.tv_usec - philo->data.begin.tv_usec) / 1000;
-		philo->data.time = time_sec + time_usec;
-		printf("%d ms ", philo->data.time);
+		print_time(philo);
 		printf("%d is eating\n", philo->id);
+		philo->time_eat = philo->data.time;
+		philo->time_not_eat = 0;
 		philo->fork = 0;
 	}
+	else
+		do_others(philo);
 }
 
 void	sleeping(t_philo *philo)
 {
-	struct timeval	end;
-	int				time_sec;
-	int				time_usec;
-
 	usleep(philo->data.time_to_sleep * 1000);
-	gettimeofday(&end, NULL);
-	time_sec = (end.tv_sec - philo->data.begin.tv_sec) * 1000;
-	time_usec = (end.tv_usec - philo->data.begin.tv_usec) / 1000;
-	philo->data.time = time_sec + time_usec;
-	printf("%d ms ", philo->data.time);
+	print_time(philo);
 	printf("%d is sleeping\n", philo->id);
-	philo->time_not_eat += philo->data.time;
+	philo->time_not_eat += philo->data.time - philo->time_eat;
 }
 
 void	thinking(t_philo *philo)
 {
-	struct timeval	end;
-	int				time_sec;
-	int				time_usec;
-
-	gettimeofday(&end, NULL);
-	time_sec = (end.tv_sec - philo->data.begin.tv_sec) * 1000;
-	time_usec = (end.tv_usec - philo->data.begin.tv_usec) / 1000;
-	philo->data.time = time_sec + time_usec;
-	printf("%d ms ", philo->data.time);
+	print_time(philo);
 	printf("%d is thinking\n", philo->id);
-	philo->time_not_eat += philo->data.time;
+	philo->time_not_eat += (philo->data.time - philo->time_not_eat);
 }
 
 void	do_others(t_philo *philo)
 {
-	struct timeval	time;
-	
-	gettimeofday(&time, NULL);
-	if (time.tv_usec % 2 == 0)
-		sleeping(philo);
-	else if (time.tv_usec % 2 != 0)
-		thinking(philo);
+	sleeping(philo);
+	thinking(philo);
 }
 
 void	*excute_routines(void *arg)
 {
 	t_philo	*philo;
-	
+	int		*re;
+
 	philo = (t_philo *)arg;
+	re = NULL;
 	take_fork(arg);
 	do_others(philo);
+	usleep(200);
+	if (philo->time_not_eat >= philo->data.time_to_die)
+	{
+		if (!pthread_mutex_lock(&philo->data.lock))
+		{
+			re = malloc(sizeof(int));
+			print_time(philo);
+			*re = philo->id;
+			printf("%d died\n", *re);
+			pthread_mutex_unlock(&philo->data.lock);
+			pthread_mutex_destroy(&philo->data.lock);
+			return ((void *)re);
+		}
+	}
 	return (NULL);
 }

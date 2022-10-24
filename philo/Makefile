@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/08 01:28:49 by npiya-is          #+#    #+#              #
-#    Updated: 2022/10/22 21:55:25 by npiya-is         ###   ########.fr        #
+#    Updated: 2022/10/23 17:37:55 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRCS= main_philosophers.c \
 	create_thread.c \
 	routines.c \
 	assign_data.c \
-	life.c
+	life.c \
+	print_time.c \
 
 NAME= philo
 
