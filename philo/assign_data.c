@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 20:08:32 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/10/23 22:05:50 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/03 18:43:40 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,19 @@ void	initialize_data(t_data *data, char **argv)
 	while (i < data->num_fork)
 	{
 		if (pthread_mutex_init(&data->fork[i], NULL) != 0)
-			printf("\n mutex init has failed\n");
+			printf("\nmutex init has failed\n");
 		printf("Mutex %d created\n", i + 1);
 		i++;
 	}
 	pthread_mutex_init(&data->lock, NULL);
+	pthread_mutex_init(&data->que, NULL);
 }
 
 void	assign_data(t_data *data, t_philo *arg)
 {
-	arg->data = *data;
+	arg->data = data;
 	arg->fork = 0;
 	arg->num_eat = 0;
+	arg->time_not_eat = 0;
+	arg->time_eat = 0;
 }

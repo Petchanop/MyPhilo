@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:22:13 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/10/24 17:36:53 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/03 15:58:05 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char *argv[])
 		printf("num_must_eat  	: %d\n", data.num_must_eat);
 		philo = malloc((ft_atoi(argv[1])) * sizeof(t_philo));
 		create_philo(data, philo);
-		do_routines(data, philo);
+		do_routines(&data, philo);
 	}
 	return (0);
 }
