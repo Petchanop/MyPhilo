@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 17:31:07 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/03 18:17:14 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/04 14:38:13 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	get_time(t_philo *philo)
 	time_sec = (end.tv_sec - philo->data->begin.tv_sec) * 1000;
 	time_usec = (end.tv_usec - philo->data->begin.tv_usec) / 1000;
 	philo->data->time = time_sec + time_usec;
+	philo->time_not_eat = philo->data->time - philo->time_eat;
 }
 
 void	print_time(t_philo *philo, char *param)

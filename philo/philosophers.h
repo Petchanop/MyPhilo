@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:22:46 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/03 19:40:29 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/09 21:39:16 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 typedef struct s_data
 {
 	pthread_mutex_t	*fork;
-	pthread_mutex_t	que;
 	pthread_mutex_t	lock;
 	int				num_fork;
 	int				num_philo;
@@ -43,6 +42,7 @@ typedef struct s_philo
 	pthread_t		philo;
 	t_data			*data;
 	int				id;
+	int				dies;
 	int				fork;
 	int				time_eat;
 	int				time_not_eat;
