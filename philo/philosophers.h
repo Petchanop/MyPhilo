@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:22:46 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/09 21:39:16 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/11 17:01:02 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_data
 {
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	lock;
+	int				*dies;
 	int				num_fork;
 	int				num_philo;
 	int				time_to_die;
@@ -42,7 +43,6 @@ typedef struct s_philo
 	pthread_t		philo;
 	t_data			*data;
 	int				id;
-	int				dies;
 	int				fork;
 	int				time_eat;
 	int				time_not_eat;
@@ -60,12 +60,13 @@ void	assign_data(t_data *data, t_philo *arg);
 void	create_philo(t_data data, t_philo *th);
 void	do_routines(t_data *data, t_philo *philo);
 void	*excute_routines(void *arg);
+void	take_time(t_philo *philo, int ac);
 void	get_time(t_philo *philo);
 void	print_time(t_philo *philo, char *param);
 void	mysleep(int sleep);
-int		*eating(t_philo *philo);
-int		*do_others(t_philo *philo);
-int		*take_fork(t_philo *philo);
-int		*check_die(t_philo *philo);
+void	eating(t_philo *philo);
+void	do_others(t_philo *philo);
+void	take_fork(t_philo *philo);
+void	check_die(t_philo *philo);
 
 #endif
