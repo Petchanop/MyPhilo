@@ -1,51 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.h                                     :+:      :+:    :+:   */
+/*   philosophers_bonus.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/08 01:22:46 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/16 22:20:04 by npiya-is         ###   ########.fr       */
+/*   Created: 2022/11/15 15:57:54 by npiya-is          #+#    #+#             */
+/*   Updated: 2022/11/15 21:53:54 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  PHILOSOPHERS_H
-# define  PHILOSOPHERS_H
+#ifndef  PHILOSOPHERS_BONUS_H
+# define  PHILOSOPHERS_BONUS_H
 
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/time.h>
+# include <semaphore.h>
 # include "../include/ft_printf/srcs/ft_printf.h"
-
-# define COUNT 0
-# define LOCK 
 
 typedef struct s_data
 {
-	pthread_mutex_t	*fork;
-	pthread_mutex_t	lock;
-	pthread_mutex_t	sleep;
-	pthread_mutex_t	thinking;
+	sem_t			*fork;
+	sem_t			*lock;
+	int				*dies;
 	int				*all_eat;
-	int				eat;
 	int				num_fork;
 	int				num_philo;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				num_must_eat;
-	struct timeval	begin;
+	int				eat;
 	int				time;
+	struct timeval	begin;
 }	t_data;
 
 typedef struct s_philo
 {
 	pthread_t		philo;
 	t_data			*data;
-	int				die;
 	int				id;
 	int				fork;
 	int				time_eat;

@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/10/08 01:28:49 by npiya-is          #+#    #+#              #
-#    Updated: 2022/11/15 21:38:06 by npiya-is         ###   ########.fr        #
+#    Created: 2022/11/15 21:27:14 by npiya-is          #+#    #+#              #
+#    Updated: 2022/11/15 21:55:36 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,20 +14,20 @@ CC = gcc
 
 CFLAGS = -g -Wall -Werror -Wextra
 
-THREAD = -lpthread
+THREAD = -lpthread 
 
 SRCS_DIR= srcs/
 UTILS_DIR= utils/
 
-SRCS= main_philosophers.c \
-	create_thread.c \
-	routines.c \
-	assign_data.c \
-	life.c \
-	print_time.c \
-	do_routines.c \
+SRCS= philo_bonus.c \
+	create_thread_bonus.c \
+	routines_bonus.c \
+	assign_data_bonus.c \
+	life_bonus.c \
+	print_time_bonus.c \
+	do_routines_bonus.c \
 
-NAME= philo
+NAME= philo_bonus
 
 LIB= -lftprintf
 LIB_DIR= -L ../include/ft_printf
@@ -42,4 +42,3 @@ fclean:
 	rm -rf $(NAME) $(NAME).dSYM
 
 re: fclean all
-

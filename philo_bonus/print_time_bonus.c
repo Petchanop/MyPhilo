@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_time.c                                       :+:      :+:    :+:   */
+/*   print_time_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/23 17:31:07 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/16 22:44:59 by npiya-is         ###   ########.fr       */
+/*   Created: 2022/11/15 21:25:37 by npiya-is          #+#    #+#             */
+/*   Updated: 2022/11/15 22:17:29 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosophers_bonus.h"
 
 void	get_time(t_philo *philo)
 {
@@ -27,11 +27,10 @@ void	get_time(t_philo *philo)
 
 void	print_time(t_philo *philo, char *param)
 {
-	if (!pthread_mutex_lock(&philo->data->lock))
+	if (!sem_wait(philo->data->lock))
 	{
 		get_time(philo);
 		printf("%d ms %d %s", philo->data->time, philo->id, param);
-		if (!philo->die)
-			pthread_mutex_unlock(&philo->data->lock);
+		sem_post(philo->data->lock);
 	}
 }
