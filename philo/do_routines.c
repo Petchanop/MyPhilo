@@ -6,32 +6,27 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 19:09:09 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/16 22:47:24 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/19 15:58:15 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	check_die(t_philo *philo)
+int	check_philo(t_philo *philo)
 {
 	int	i;
 
 	i = 0;
 	get_time(philo);
-	if (philo->time_not_eat > philo->data->time_to_die
-		|| (philo->data->num_must_eat
-			&& philo->num_eat == philo->data->num_must_eat))
+	if (philo->time_not_eat >= philo->data->time_to_die)
 	{
-		pthread_mutex_lock(&philo->data->lock);
+		philo->data->die = philo->id;
 		philo->die = philo->id;
-		pthread_mutex_unlock(&philo->data->lock);
-		while (i < philo->data->num_fork)
-		{
-			pthread_mutex_lock(&philo->data->fork[i]);
-			i++;
-		}
-		pthread_mutex_destroy(&philo->data->lock);
+		return (1);
 	}
+	if (philo->data->num_philo == philo->data->eat)
+		return (1);
+	return (0);
 }
 
 void	take_time(t_philo *philo, int ac)
@@ -46,8 +41,8 @@ void	take_time(t_philo *philo, int ac)
 	{
 		get_time(philo);
 		cur_time = philo->data->time;
-		check_die(philo);
 	}
+	get_time(philo);
 }
 
 void	*excute_routines(void *arg)
@@ -55,15 +50,9 @@ void	*excute_routines(void *arg)
 	t_philo		*philo;
 
 	philo = (t_philo *)arg;
-	if (!pthread_mutex_lock(&philo->data->lock))
-	{
-		get_time(philo);
-		pthread_mutex_unlock(&philo->data->lock);
-	}
 	take_fork(philo);
 	do_others(philo);
-	check_die(philo);
-	if (!philo->die)
+	if (!philo->data->die && (philo->data->num_philo != philo->data->eat))
 		excute_routines(arg);
 	return (arg);
 }

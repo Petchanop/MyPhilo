@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 20:08:32 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/16 22:23:43 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/19 15:53:14 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	initialize_data(t_data *data, char **argv)
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
+	data->eat = 0;
+	data->die = 0;
 	if (argv[5])
 		data->num_must_eat = ft_atoi(argv[5]);
 	else
@@ -31,12 +33,9 @@ void	initialize_data(t_data *data, char **argv)
 	{
 		if (pthread_mutex_init(&data->fork[i], NULL) != 0)
 			printf("\nmutex init has failed\n");
-		printf("Mutex %d created\n", i + 1);
 		i++;
 	}
 	pthread_mutex_init(&data->lock, NULL);
-	pthread_mutex_init(&data->sleep, NULL);
-	pthread_mutex_init(&data->thinking, NULL);
 }
 
 void	assign_data(t_data *data, t_philo *arg)

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:22:46 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/16 22:20:04 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/17 18:22:53 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,19 @@
 # include <sys/time.h>
 # include "../include/ft_printf/srcs/ft_printf.h"
 
-# define COUNT 0
-# define LOCK 
+# define RED "\x1b[31m"
+# define BLUE "\x1b[34m"
+# define GREEN "\x1b[32m"
+# define WHITE "\x1b[37m"
+# define CYAN "\x1b[36m"
+# define MAGENTA "\x1b[35m"
 
 typedef struct s_data
 {
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	lock;
-	pthread_mutex_t	sleep;
-	pthread_mutex_t	thinking;
-	int				*all_eat;
 	int				eat;
+	int				die;
 	int				num_fork;
 	int				num_philo;
 	int				time_to_die;
@@ -53,12 +55,6 @@ typedef struct s_philo
 	int				num_eat;
 }	t_philo;
 
-typedef struct s_thread
-{
-	t_philo	*thread;
-	t_data	data;
-}	t_thread;
-
 void	initialize_data(t_data *data, char **argv);
 void	assign_data(t_data *data, t_philo *arg);
 void	create_philo(t_data data, t_philo *th);
@@ -71,6 +67,7 @@ void	mysleep(int sleep);
 void	eating(t_philo *philo);
 void	do_others(t_philo *philo);
 void	take_fork(t_philo *philo);
-void	check_die(t_philo *philo);
+int		check_philo(t_philo *philo);
+char	*assign_color(char *param);
 
 #endif

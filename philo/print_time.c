@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 17:31:07 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/16 22:44:59 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/19 15:57:55 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,31 @@ void	print_time(t_philo *philo, char *param)
 	if (!pthread_mutex_lock(&philo->data->lock))
 	{
 		get_time(philo);
+		printf("%s", assign_color(param));
 		printf("%d ms %d %s", philo->data->time, philo->id, param);
-		if (!philo->die)
+		printf(WHITE);
+		if (!philo->die || (philo->data->num_philo == philo->data->eat))
 			pthread_mutex_unlock(&philo->data->lock);
 	}
+}
+
+char	*assign_color(char *param)
+{
+	int	len;
+
+	len = ft_strlen(param);
+	if (param[len - 2] == 'k' && param[len - 3] == 'r' && param[len - 4] == 'o')
+		return (GREEN);
+	else if (param[len - 7] == 'e' && param[len - 6] == 'a'
+		&& param[len - 5] == 't')
+		return (CYAN);
+	else if (param[len - 9] == 't' && param[len - 8] == 'h'
+		&& param[len - 7] == 'i')
+		return (BLUE);
+	else if (param[len - 9] == 's' && param[len - 8] == 'l'
+		&& param[len - 7] == 'e')
+		return (MAGENTA);
+	else if (param[len - 5] == 'd' && param[len - 2] == 'd')
+		return (RED);
+	return (WHITE);
 }
