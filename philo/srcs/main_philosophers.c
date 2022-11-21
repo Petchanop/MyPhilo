@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:22:13 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/19 15:57:44 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/21 22:54:43 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,14 @@ int	main(int argc, char *argv[])
 	t_philo		*philo;
 	t_data		data;
 	int			i;
-	int			j;
 
 	i = 0;
-	j = 0;
 	if (argc >= 1)
 	{
 		initialize_data(&data, argv);
 		philo = malloc((ft_atoi(argv[1])) * sizeof(t_philo));
 		create_philo(data, philo);
 		do_routines(&data, philo);
-		while (j < data.num_fork)
-		{
-			pthread_mutex_destroy(data.fork);
-			j++;
-		}
 		free(data.fork);
 	}
 	return (0);

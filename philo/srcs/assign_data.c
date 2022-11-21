@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 20:08:32 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/19 15:53:14 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/21 21:51:46 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	initialize_data(t_data *data, char **argv)
 		data->num_must_eat = ft_atoi(argv[5]);
 	else
 		data->num_must_eat = 0;
-	data->fork = malloc(data->num_fork * sizeof(pthread_mutex_t));
+	data->fork = malloc((data->num_fork) * sizeof(pthread_mutex_t));
 	while (i < data->num_fork)
 	{
 		if (pthread_mutex_init(&data->fork[i], NULL) != 0)
@@ -36,6 +36,7 @@ void	initialize_data(t_data *data, char **argv)
 		i++;
 	}
 	pthread_mutex_init(&data->lock, NULL);
+	pthread_mutex_init(&data->print, NULL);
 }
 
 void	assign_data(t_data *data, t_philo *arg)

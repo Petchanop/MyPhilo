@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:22:46 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/21 14:26:19 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/21 22:51:14 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_data
 {
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	lock;
+	pthread_mutex_t	print;
 	int				eat;
 	int				die;
 	int				num_fork;
@@ -40,13 +41,13 @@ typedef struct s_data
 	int				time_to_sleep;
 	int				num_must_eat;
 	struct timeval	begin;
-	int				time;
 }	t_data;
 
 typedef struct s_philo
 {
 	pthread_t		philo;
 	t_data			*data;
+	int				time;
 	int				die;
 	int				id;
 	int				fork;
@@ -65,8 +66,11 @@ void	get_time(t_philo *philo);
 void	print_time(t_philo *philo, char *param);
 void	mysleep(int sleep);
 void	eating(t_philo *philo);
-void	do_others(t_philo *philo);
 void	take_fork(t_philo *philo);
+void	sleeping(t_philo *philo);
+void	thinking(t_philo *philo);
+void	choose_fork(t_philo *philo, pthread_mutex_t *mutex);
+void	drop_fork(t_philo *philo, pthread_mutex_t *mutex);
 int		check_philo(t_philo *philo);
 char	*assign_color(char *param);
 

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 21:33:02 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/19 15:07:46 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/21 22:39:49 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,18 @@ void	monitor_die(t_philo *philo)
 			break ;
 		i++;
 	}
-	if (philo->data->num_philo == philo->data->eat)
+	if (!pthread_mutex_lock(&philo->data->print))
 	{
-		if (!pthread_mutex_lock(&philo->data->lock))
+		if (philo->data->num_philo == philo->data->eat)
 		{
 			get_time(philo);
-			printf("%d ms All philo was eat enough\n", philo->data->time);
+			printf("%d ms All philo was eat enough\n", philo->time);
 		}
+		else
+			printf("%s%d ms %d has died\n", RED, philo[i].time, philo[i].id);
 	}
-	else
-		print_time(&philo[i], "died\n");
+	pthread_mutex_unlock(&philo->data->print);
+	return ;
 }
 
 void	do_routines(t_data *data, t_philo *th)
@@ -50,13 +52,7 @@ void	do_routines(t_data *data, t_philo *th)
 		th[i].data->begin = data->begin;
 		if (pthread_create(&th[i].philo, NULL, &excute_routines, &th[i]) != 0)
 			printf("Can't create thread number %d\n", i);
-		i += 2;
-		if (i >= data->num_fork && i % 2 == 0)
-		{
-			i = 1;
-			usleep(50);
-		}
+		i++;
 	}
 	monitor_die(th);
-	pthread_mutex_unlock(&data->lock);
 }
