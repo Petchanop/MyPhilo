@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/08 01:28:49 by npiya-is          #+#    #+#              #
-#    Updated: 2022/11/15 21:38:06 by npiya-is         ###   ########.fr        #
+#    Updated: 2022/11/21 14:25:57 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,13 @@ THREAD = -lpthread
 SRCS_DIR= srcs/
 UTILS_DIR= utils/
 
-SRCS= main_philosophers.c \
-	create_thread.c \
-	routines.c \
-	assign_data.c \
-	life.c \
-	print_time.c \
-	do_routines.c \
+SRCS= $(SRCS_DIR)main_philosophers.c \
+	$(SRCS_DIR)create_thread.c \
+	$(SRCS_DIR)routines.c \
+	$(SRCS_DIR)assign_data.c \
+	$(SRCS_DIR)life.c \
+	$(SRCS_DIR)print_time.c \
+	$(SRCS_DIR)do_routines.c \
 
 NAME= philo
 
