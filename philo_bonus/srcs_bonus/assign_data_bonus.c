@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:01:56 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/16 15:53:04 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/25 13:56:27 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ void	initialize_data(t_data *data, char **argv)
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
-	data->dies = NULL;
-	data->all_eat = NULL;
+	data->die = 0;
 	data->eat = 0;
 	if (argv[5])
 		data->num_must_eat = ft_atoi(argv[5]);
 	else
 		data->num_must_eat = 0;
-	data->fork = sem_open("/fork_mutex", O_CREAT, S_IRUSR | S_IWUSR, 0666, 5);
-	data->lock = sem_open("/lock", O_CREAT, S_IRUSR | S_IWUSR, 0666, 1);
+	data->fork = sem_open("/fork_mutex", O_CREAT, 0666, data->num_philo);
+	data->lock = sem_open("/lock", O_CREAT, 0666, 1);
+	data->print = sem_open("/print", O_CREAT, 0666, 1);
 }
 
 void	assign_data(t_data *data, t_philo *arg)
@@ -40,4 +40,5 @@ void	assign_data(t_data *data, t_philo *arg)
 	arg->num_eat = 0;
 	arg->time_not_eat = 0;
 	arg->time_eat = 0;
+	arg->die = 0;
 }

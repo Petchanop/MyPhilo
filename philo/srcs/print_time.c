@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 17:31:07 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/21 22:45:46 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/23 18:30:49 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	print_time(t_philo *philo, char *param)
 		printf(WHITE);
 		pthread_mutex_unlock(&philo->data->print);
 	}
+	else
+		return ;
 }
 
 char	*assign_color(char *param)
