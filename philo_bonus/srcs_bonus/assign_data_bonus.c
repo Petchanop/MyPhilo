@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:01:56 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/25 13:56:27 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/28 21:59:31 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,18 @@ void	initialize_data(t_data *data, char **argv)
 		data->num_must_eat = ft_atoi(argv[5]);
 	else
 		data->num_must_eat = 0;
-	data->fork = sem_open("/fork_mutex", O_CREAT, 0666, data->num_philo);
-	data->lock = sem_open("/lock", O_CREAT, 0666, 1);
-	data->print = sem_open("/print", O_CREAT, 0666, 1);
+	sem_unlink("/fork");
+	sem_unlink("/lock");
+	sem_unlink("/print");
+	sem_unlink("/eatall");
+	data->fork = sem_open("/fork", O_CREAT | O_EXCL, 0666, data->num_philo);
+	data->lock = sem_open("/lock", O_CREAT | O_EXCL, 0666, 1);
+	data->print = sem_open("/print", O_CREAT | O_EXCL, 0666, 1);
+	data->eatall = sem_open("/eatall", O_CREAT | O_EXCL, 0666, data->num_philo);
 }
 
-void	assign_data(t_data *data, t_philo *arg)
+void	assign_data(t_philo *arg)
 {
-	arg->data = data;
 	arg->fork = 0;
 	arg->num_eat = 0;
 	arg->time_not_eat = 0;
