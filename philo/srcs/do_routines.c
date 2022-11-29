@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 19:09:09 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/29 18:58:11 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/29 23:38:53 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	*excute_routines(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
-		usleep(100);
+		take_time(philo, philo->data->time_to_eat);
 	while (!philo->data->die && (philo->data->num_philo != philo->data->eat))
 	{
 		take_fork(philo);

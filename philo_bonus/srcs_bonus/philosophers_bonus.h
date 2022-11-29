@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:57:54 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/29 19:13:42 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/29 23:47:40 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				num_must_eat;
-	struct timeval	begin;
+	unsigned long	begin;
 }	t_data;
 
 typedef struct s_philo
@@ -64,6 +64,7 @@ typedef struct s_philo
 	int				time_eat;
 	int				time_not_eat;
 	int				num_eat;
+	unsigned long	begin;
 }	t_philo;
 
 void	initialize_data(t_data *data, char **argv);

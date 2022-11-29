@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 21:33:02 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/29 20:37:02 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/29 23:38:45 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,11 @@ void	do_routines(t_data *data, t_philo *th)
 
 	i = 0;
 	gettimeofday(&begin, NULL);
-	data->begin = begin;
+	data->begin = begin.tv_sec * 1000000 + begin.tv_usec;
+	data->begin /= 1000;
 	while (i < data->num_fork)
 	{
-		th[i].data->begin = data->begin;
+		th[i].begin = data->begin;
 		if (pthread_create(&th[i].philo, NULL, &excute_routines, &th[i]) != 0)
 			printf("Can't create thread number %d\n", i);
 		i++;

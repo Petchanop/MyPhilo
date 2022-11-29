@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 21:25:37 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/28 20:54:55 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/29 23:49:42 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,9 @@
 void	get_time(t_philo *philo, t_data data)
 {
 	struct timeval	end;
-	int				time_sec;
-	int				time_usec;
 
 	gettimeofday(&end, NULL);
-	time_sec = (end.tv_sec - data.begin.tv_sec) * 1000;
-	time_usec = (end.tv_usec - data.begin.tv_usec) / 1000;
-	philo->time = time_sec + time_usec;
+	philo->time = (end.tv_sec * 1000000 + end.tv_usec) / 1000 - data.begin;
 	philo->time_not_eat = philo->time - philo->time_eat;
 }
 

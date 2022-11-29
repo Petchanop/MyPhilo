@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 21:20:05 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/28 23:29:56 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/29 23:54:21 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,11 @@ void	buid_process(t_data data, t_philo *th)
 
 	i = 0;
 	gettimeofday(&begin, NULL);
-	data.begin = begin;
+	data.begin = begin.tv_sec * 1000000 + begin.tv_usec;
+	data.begin /= 1000;
 	while (i < data.num_philo)
 	{
+		th[i].begin = data.begin;
 		do_routines(data, &th[i]);
 		i++;
 	}
