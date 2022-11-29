@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:01:13 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/28 23:36:37 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/29 16:47:30 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,12 @@ int	main(int argc, char *argv[])
 
 	if (argc >= 5 && argc < 7)
 	{
+		if (!check_input(argc, argv))
+		{
+			print_usage();
+			return (0);
+		}
 		initialize_data(&data, argv);
-		printf("num_philo 	: %d\n", data.num_philo);
-		printf("num_fork 	: %d\n", data.num_fork);
-		printf("time_to_die 	: %d\n", data.time_to_die);
-		printf("time_to_eat	: %d\n", data.time_to_eat);
-		printf("time_to_sleep 	: %d\n", data.time_to_sleep);
-		printf("num_must_eat  	: %d\n", data.num_must_eat);
 		philo = malloc((ft_atoi(argv[1])) * sizeof(t_philo));
 		create_philo(data, philo);
 		buid_process(data, philo);

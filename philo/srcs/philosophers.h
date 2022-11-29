@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:22:46 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/29 16:16:23 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/29 16:47:42 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	thinking(t_philo *philo);
 void	choose_fork(t_philo *philo, pthread_mutex_t *mutex);
 void	drop_fork(t_philo *philo, pthread_mutex_t *mutex);
 int		check_philo(t_philo *philo);
+int		check_input(int argc, char **argv);
 char	*assign_color(char *param);
 
 #endif

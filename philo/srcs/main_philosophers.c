@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:22:13 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/29 16:26:39 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/29 16:47:23 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ int	main(int argc, char *argv[])
 	i = 0;
 	if (argc >= 5 && argc < 7)
 	{
+		if (!check_input(argc, argv))
+		{
+			print_usage();
+			return (0);
+		}
 		initialize_data(&data, argv);
 		philo = malloc((ft_atoi(argv[1])) * sizeof(t_philo));
 		create_philo(data, philo);

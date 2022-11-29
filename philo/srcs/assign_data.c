@@ -6,11 +6,25 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 20:08:32 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/21 21:51:46 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/29 16:46:40 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+int	check_input(int argc, char **argv)
+{
+	int	i;
+
+	i = 1;
+	while (i < argc - 1)
+	{
+		if (ft_atoi(argv[i]) < 1)
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 void	initialize_data(t_data *data, char **argv)
 {
