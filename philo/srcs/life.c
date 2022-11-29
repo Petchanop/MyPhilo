@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 21:33:02 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/29 18:58:22 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/29 20:37:02 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	monitor_die(t_philo *philo)
 		if (philo->data->num_philo == philo->data->eat)
 		{
 			get_time(philo);
-			printf("%d ms All philo was eat enough\n", philo->time);
+			printf("%lu ms All philo was eat enough\n", philo->time);
 		}
 		else
-			printf("%s%d ms %d has died\n", RED, philo[i].time, philo[i].id);
+			printf("%s%lu ms %d has died\n", RED, philo[i].time, philo[i].id);
 	}
 	pthread_mutex_unlock(&philo->data->print);
 	pthread_mutex_destroy(&philo->data->print);

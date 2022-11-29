@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:22:46 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/29 19:25:49 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/29 20:35:11 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_philo
 {
 	pthread_t		philo;
 	t_data			*data;
-	int				time;
+	unsigned long	time;
 	int				die;
 	int				id;
 	int				fork;

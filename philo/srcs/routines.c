@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:43:29 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/25 13:14:19 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/29 20:07:34 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ void	eating(t_philo *philo)
 		philo->time_not_eat = 0;
 		pthread_mutex_unlock(&philo->data->lock);
 	}
-	else
-		usleep(100);
 }
 
 void	take_fork(t_philo *philo)
