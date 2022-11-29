@@ -6,18 +6,18 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/08 01:28:49 by npiya-is          #+#    #+#              #
-#    Updated: 2022/11/21 14:25:57 by npiya-is         ###   ########.fr        #
+#    Updated: 2022/11/29 15:53:56 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 
-CFLAGS = -g -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 
 THREAD = -lpthread
 
 SRCS_DIR= srcs/
-UTILS_DIR= utils/
+UTILS_DIR= ../utils/
 
 SRCS= $(SRCS_DIR)main_philosophers.c \
 	$(SRCS_DIR)create_thread.c \
@@ -27,19 +27,31 @@ SRCS= $(SRCS_DIR)main_philosophers.c \
 	$(SRCS_DIR)print_time.c \
 	$(SRCS_DIR)do_routines.c \
 
-NAME= philo
+SRCS_UTILS= $(UTILS_DIR)ft_atoi.c \
+	$(UTILS_DIR)ft_isalpha.c \
+	$(UTILS_DIR)ft_isdigit.c \
+	$(UTILS_DIR)ft_strlen.c \
 
-LIB= -lftprintf
-LIB_DIR= -L ../include/ft_printf
+OBJS=$(SRCS:%.c=%.o)
+
+OBJS_UTILS=$(SRCS_UTILS:%.c=%.o)
+
+NAME= philo
 
 all: $(NAME)
 
-$(NAME):
+$(NAME):$(OBJS) $(OBJS_UTILS)
 	@make -C ../include/ft_printf
-	$(CC) $(CFLAGS) $(SRCS) -o $(NAME) $(LIB_DIR) $(LIB) $(THREAD)
+	$(CC) $(CFLAGS) $(OBJS) $(OBJS_UTILS) -o $(NAME) $(THREAD)
 
-fclean:
+clean:
+	rm -rf $(OBJS)
+	rm -rf ../utils/$(OBJS_UTILS)
+
+fclean:clean
+	@make -C ../include/ft_printf fclean
 	rm -rf $(NAME) $(NAME).dSYM
 
 re: fclean all
 
+.PHONY: re fclean clean all

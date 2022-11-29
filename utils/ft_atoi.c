@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/28 23:41:33 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/10/21 21:15:19 by npiya-is         ###   ########.fr       */
+/*   Created: 2022/11/29 15:48:23 by npiya-is          #+#    #+#             */
+/*   Updated: 2022/11/29 15:48:28 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philosophers.h" 
+#include <unistd.h> 
 
 int	ft_isdigit(int c);
 
