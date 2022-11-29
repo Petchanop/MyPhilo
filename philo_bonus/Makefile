@@ -6,13 +6,13 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 21:27:14 by npiya-is          #+#    #+#              #
-#    Updated: 2022/11/29 16:17:55 by npiya-is         ###   ########.fr        #
+#    Updated: 2022/11/29 16:25:28 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 
-CFLAGS = -g -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 
 THREAD = -lpthread 
 

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:22:13 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/28 23:41:19 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/29 16:26:39 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	main(int argc, char *argv[])
 		create_philo(data, philo);
 		do_routines(&data, philo);
 		free(data.fork);
+		free(philo);
 	}
 	else
 		print_usage();
