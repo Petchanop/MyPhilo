@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 21:18:52 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/28 23:36:29 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/29 18:47:58 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,4 @@ void	create_philo(t_data data, t_philo *th)
 		th[i].id = i + 1;
 		i++;
 	}
-	printf("Philo create success\n");
 }

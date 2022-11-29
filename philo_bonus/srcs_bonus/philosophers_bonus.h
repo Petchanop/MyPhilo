@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:57:54 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/29 16:47:58 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:13:42 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@
 # define WHITE "\x1b[37m"
 # define CYAN "\x1b[36m"
 # define MAGENTA "\x1b[35m"
+# define REDBG "\x1b[41m"
+# define BLUEBG "\x1b[44m"
+# define GREENBG "\x1b[42m"
+# define WHITEBG "\x1b[47m"
+# define CYANBG "\x1b[46m"
+# define MAGENTABG "\x1b[45m"
 
 typedef struct s_data
 {

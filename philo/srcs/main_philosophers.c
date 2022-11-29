@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:22:13 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/29 16:47:23 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:12:41 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	print_usage(void)
 {
-	printf("USAGE :\n");
+	printf("%sUSAGE :\n", CYAN);
 	printf("\tnumber_of_philosophers\n");
 	printf("\ttime_to_die\n");
 	printf("\ttime_to_eat\n");
 	printf("\ttime_to_sleep\n");
-	printf("\toptional : [number_of_times_each_philosopher_must_eat]\n");
-	printf("input must be positive number.\n");
-	printf("number of philo must be not over 200.\n");
-	printf("ex. ./philo 2 400 200 200\n");
+	printf("\toptional : [number_of_times_each_philosopher_must_eat]\n%s", WHITE);
+	printf("%sinput must be positive number.\n", RED);
+	printf("number of philo must be not over 200.\n%s", WHITE);
+	printf("%s%sex. ./philo 2 400 200 200\n%s", BLUE, GREENBG, WHITE);
 }
 
 int	main(int argc, char *argv[])
