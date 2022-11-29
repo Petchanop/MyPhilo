@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:57:54 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/28 21:59:38 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/29 16:16:05 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <semaphore.h>
 # include <sys/wait.h>
 # include <signal.h>
-# include "../../include/ft_printf/srcs/ft_printf.h"
+# include "../../utils/utils.h"
 
 # define RED "\x1b[31m"
 # define BLUE "\x1b[34m"

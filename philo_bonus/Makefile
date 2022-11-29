@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 21:27:14 by npiya-is          #+#    #+#              #
-#    Updated: 2022/11/29 15:53:47 by npiya-is         ###   ########.fr        #
+#    Updated: 2022/11/29 16:17:55 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,6 @@ NAME= philo_bonus
 all: $(NAME)
 
 $(NAME):$(OBJS) $(OBJS_UTILS)
-	@make -C ../include/ft_printf
 	$(CC) $(CFLAGS) $(OBJS) $(OBJS_UTILS) -o $(NAME) $(THREAD)
 
 clean:
@@ -49,7 +48,6 @@ clean:
 	rm -rf ../utils/$(OBJS_UTILS)
 
 fclean:clean
-	@make -C ../include/ft_printf fclean
 	rm -rf $(NAME) $(NAME).dSYM
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:22:46 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/21 22:51:14 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/29 16:16:23 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/time.h>
-# include "../../include/ft_printf/srcs/ft_printf.h"
+# include "../../utils/utils.h"
 
 # define RED "\x1b[31m"
 # define BLUE "\x1b[34m"
