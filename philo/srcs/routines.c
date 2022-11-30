@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:43:29 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/29 23:41:03 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:38:12 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,12 @@ void	eating(t_philo *philo)
 	{
 		print_time(philo, "is eating\n");
 		take_time(philo, philo->data->time_to_eat);
-		pthread_mutex_lock(&philo->data->lock);
+		philo->time_not_eat = 0;
 		philo->time_eat = philo->time;
-		get_time(philo);
 		philo->num_eat++;
+		pthread_mutex_lock(&philo->data->lock);
 		if (philo->num_eat == philo->data->num_must_eat)
 			philo->data->eat++;
-		philo->time_not_eat = 0;
 		pthread_mutex_unlock(&philo->data->lock);
 	}
 }
@@ -59,12 +58,5 @@ void	take_fork(t_philo *philo)
 		eating(philo);
 		drop_fork(philo, &philo->data->fork[philo->id - 1]);
 		drop_fork(philo, &philo->data->fork[philo->id % fork]);
-	}
-	if (philo->fork == 1)
-	{
-		if (philo->id % 2 != 0)
-			pthread_mutex_unlock(&philo->data->fork[philo->id - 1]);
-		else
-			pthread_mutex_unlock(&philo->data->fork[philo->id % fork]);
 	}
 }

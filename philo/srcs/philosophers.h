@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:22:46 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/29 23:19:46 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/30 13:14:05 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_philo
 	t_data			*data;
 	unsigned long	time;
 	int				die;
+	int				eat;
 	int				id;
 	int				fork;
 	int				time_eat;
@@ -71,7 +72,6 @@ void	*excute_routines(void *arg);
 void	take_time(t_philo *philo, int ac);
 void	get_time(t_philo *philo);
 void	print_time(t_philo *philo, char *param);
-void	mysleep(int sleep);
 void	eating(t_philo *philo);
 void	take_fork(t_philo *philo);
 void	sleeping(t_philo *philo);

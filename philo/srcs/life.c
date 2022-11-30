@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 21:33:02 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/29 23:38:45 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:37:13 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	monitor_die(t_philo *philo)
 	}
 	pthread_mutex_unlock(&philo->data->print);
 	pthread_mutex_destroy(&philo->data->print);
-	return ;
 }
 
 void	do_routines(t_data *data, t_philo *th)

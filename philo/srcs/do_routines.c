@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 19:09:09 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/29 23:38:53 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:37:21 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	thinking(t_philo *philo)
 int	check_philo(t_philo *philo)
 {
 	get_time(philo);
-	if (philo->time_not_eat >= philo->data->time_to_die)
+	if ((int)(philo->time - philo->time_eat) >= philo->data->time_to_die)
 	{
 		philo->data->die = philo->id;
 		philo->die = philo->id;
