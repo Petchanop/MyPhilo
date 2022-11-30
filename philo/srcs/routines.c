@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:43:29 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/30 14:38:12 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/11/30 16:23:18 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void	eating(t_philo *philo)
 		philo->time_not_eat = 0;
 		philo->time_eat = philo->time;
 		philo->num_eat++;
-		pthread_mutex_lock(&philo->data->lock);
+		// pthread_mutex_lock(&philo->data->lock);
 		if (philo->num_eat == philo->data->num_must_eat)
 			philo->data->eat++;
-		pthread_mutex_unlock(&philo->data->lock);
+		// pthread_mutex_unlock(&philo->data->lock);
 	}
 }
 
@@ -53,8 +53,10 @@ void	take_fork(t_philo *philo)
 	get_time(philo);
 	if (!philo->data->die && philo->data->num_philo != philo->data->eat)
 	{
+		pthread_mutex_lock(&philo->data->lock);
 		choose_fork(philo, &philo->data->fork[philo->id - 1]);
 		choose_fork(philo, &philo->data->fork[philo->id % fork]);
+		pthread_mutex_unlock(&philo->data->lock);
 		eating(philo);
 		drop_fork(philo, &philo->data->fork[philo->id - 1]);
 		drop_fork(philo, &philo->data->fork[philo->id % fork]);

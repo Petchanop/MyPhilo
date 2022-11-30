@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/08 01:28:49 by npiya-is          #+#    #+#              #
-#    Updated: 2022/11/29 16:18:00 by npiya-is         ###   ########.fr        #
+#    Updated: 2022/11/30 16:29:16 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ $(NAME):$(OBJS) $(OBJS_UTILS)
 	$(CC) $(CFLAGS) $(OBJS) $(OBJS_UTILS) -o $(NAME) $(THREAD)
 
 clean:
-	rm -rf $(OBJS)
+	rm -rf $(OBJS) $(NAME).dSYM
 	rm -rf ../utils/$(OBJS_UTILS)
 
 fclean:clean
