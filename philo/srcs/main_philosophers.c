@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:22:13 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/29 19:12:41 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/12/01 18:33:18 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ int	main(int argc, char *argv[])
 {
 	t_philo		*philo;
 	t_data		data;
-	int			i;
 
-	i = 0;
 	if (argc >= 5 && argc < 7)
 	{
 		if (!check_input(argc, argv))

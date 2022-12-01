@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:01:56 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/29 16:47:08 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/12/01 18:58:00 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	check_input(int argc, char **argv)
 	int	i;
 
 	i = 1;
-	while (i < argc - 1)
+	while (i < argc)
 	{
 		if (ft_atoi(argv[i]) < 1)
 			return (0);

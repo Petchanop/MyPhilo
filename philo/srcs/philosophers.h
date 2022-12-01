@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:22:46 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/30 13:14:05 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/12/01 18:38:20 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_data
 {
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	lock;
+	pthread_mutex_t	lock2;
 	pthread_mutex_t	print;
 	int				eat;
 	int				die;

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 20:08:32 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/30 12:39:41 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/12/01 18:38:30 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	initialize_data(t_data *data, char **argv)
 		i++;
 	}
 	pthread_mutex_init(&data->lock, NULL);
+	pthread_mutex_init(&data->lock2, NULL);
 	pthread_mutex_init(&data->print, NULL);
 }
 
