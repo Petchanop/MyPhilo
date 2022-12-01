@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:22:46 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/12/01 20:21:11 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/12/02 00:10:45 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	do_routines(t_data *data, t_philo *philo);
 void	*excute_routines(void *arg);
 void	take_time(t_philo *philo, int ac);
 void	get_time(t_philo *philo);
-void	print_time(t_philo *philo, char *param);
+void	print_time(t_philo *philo, char *param, char *color);
 void	eating(t_philo *philo);
 void	take_fork(t_philo *philo);
 void	sleeping(t_philo *philo);

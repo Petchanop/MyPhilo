@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:43:29 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/12/01 20:21:20 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/12/02 00:11:22 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	choose_fork(t_philo *philo, pthread_mutex_t *mutex)
 	get_time(philo);
 	pthread_mutex_lock(mutex);
 	philo->fork++;
-	print_time(philo, "has taken a fork\n");
+	print_time(philo, "has taken a fork\n", GREEN);
 }
 
 void	drop_fork(t_philo *philo, pthread_mutex_t *mutex)
@@ -30,7 +30,7 @@ void	eating(t_philo *philo)
 {
 	if (!philo->die && philo->data.num_philo != philo->data.eat)
 	{
-		print_time(philo, "is eating\n");
+		print_time(philo, "is eating\n", CYAN);
 		take_time(philo, philo->data.time_to_eat);
 		philo->time_not_eat = 0;
 		philo->time_eat = philo->time;

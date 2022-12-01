@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 19:09:09 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/12/01 22:48:10 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/12/02 00:16:58 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	sleeping(t_philo *philo)
 {
 	if (!philo->data.die && philo->data.num_philo != philo->data.eat)
 	{
-		print_time(philo, "is sleeping\n");
+		print_time(philo, "is sleeping\n", MAGENTA);
 		take_time(philo, philo->data.time_to_sleep);
 	}
 }
@@ -24,7 +24,7 @@ void	sleeping(t_philo *philo)
 void	thinking(t_philo *philo)
 {
 	if (!philo->data.die && philo->data.num_philo != philo->data.eat)
-		print_time(philo, "is thinking\n");
+		print_time(philo, "is thinking\n", BLUE);
 }
 
 int	check_philo(t_philo *philo, t_data *data)
@@ -34,7 +34,7 @@ int	check_philo(t_philo *philo, t_data *data)
 	{
 		data->die = philo->id;
 		philo->die = philo->id;
-		usleep(1000);
+		data->die = philo->id;
 		return (1);
 	}
 	if (philo->data.num_must_eat && philo->check
@@ -45,7 +45,7 @@ int	check_philo(t_philo *philo, t_data *data)
 	}
 	if (philo->data.num_philo == data->eat)
 	{
-		usleep(1000);
+		usleep(500);
 		return (1);
 	}
 	return (0);
@@ -63,6 +63,7 @@ void	take_time(t_philo *philo, int ac)
 	{
 		get_time(philo);
 		cur_time = philo->time;
+		usleep(100);
 	}
 	get_time(philo);
 }
