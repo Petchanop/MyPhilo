@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 21:33:02 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/12/01 20:29:39 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/12/01 22:44:31 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	do_routines(t_data *data, t_philo *th)
 		th[i].begin = data->begin;
 		if (pthread_create(&th[i].philo, NULL, &excute_routines, &th[i]) != 0)
 			printf("Can't create thread number %d\n", i);
+		usleep(50);
 		i++;
 	}
 	monitor_die(th, data);

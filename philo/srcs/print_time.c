@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 17:31:07 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/12/01 19:30:52 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/12/01 22:54:30 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	print_time(t_philo *philo, char *param)
 		get_time(philo);
 		printf("%s", assign_color(param));
 		printf("%lu ms %d %s", philo->time, philo->id, param);
-		printf(WHITE);
 		pthread_mutex_unlock(&philo->data.print);
 	}
 	else
