@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 19:09:09 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/30 14:37:21 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/12/01 19:50:11 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,35 @@
 
 void	sleeping(t_philo *philo)
 {
-	if (!philo->data->die && philo->data->num_philo != philo->data->eat)
+	if (!philo->data.die && philo->data.num_philo != philo->data.eat)
 	{
 		print_time(philo, "is sleeping\n");
-		take_time(philo, philo->data->time_to_sleep);
+		take_time(philo, philo->data.time_to_sleep);
 	}
 }
 
 void	thinking(t_philo *philo)
 {
-	if (!philo->data->die && philo->data->num_philo != philo->data->eat)
+	if (!philo->data.die && philo->data.num_philo != philo->data.eat)
 		print_time(philo, "is thinking\n");
 }
 
-int	check_philo(t_philo *philo)
+int	check_philo(t_philo *philo, t_data *data)
 {
 	get_time(philo);
-	if ((int)(philo->time - philo->time_eat) >= philo->data->time_to_die)
+	if ((int)(philo->time - philo->time_eat) >= data->time_to_die)
 	{
-		philo->data->die = philo->id;
+		data->die = philo->id;
 		philo->die = philo->id;
 		return (1);
 	}
-	if (philo->data->num_philo == philo->data->eat)
+	if (philo->num_eat == philo->data.num_must_eat)
+		philo->data.eat++;
+	if (philo->data.num_philo == philo->data.eat)
+	{
+		usleep(1000);
 		return (1);
+	}
 	return (0);
 }
 
@@ -63,8 +68,8 @@ void	*excute_routines(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
-		take_time(philo, philo->data->time_to_eat);
-	while (!philo->data->die && (philo->data->num_philo != philo->data->eat))
+		take_time(philo, philo->data.time_to_eat);
+	while (!philo->data.die && (philo->data.num_philo != philo->data.eat))
 	{
 		take_fork(philo);
 		sleeping(philo);

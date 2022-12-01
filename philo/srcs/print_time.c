@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 17:31:07 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/11/30 10:46:14 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/12/01 19:30:52 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	get_time(t_philo *philo)
 
 void	print_time(t_philo *philo, char *param)
 {
-	if (!philo->data->die && philo->data->num_philo != philo->data->eat)
+	if (!philo->data.die && philo->data.num_philo != philo->data.eat)
 	{
-		pthread_mutex_lock(&philo->data->print);
+		pthread_mutex_lock(&philo->data.print);
 		get_time(philo);
 		printf("%s", assign_color(param));
 		printf("%lu ms %d %s", philo->time, philo->id, param);
 		printf(WHITE);
-		pthread_mutex_unlock(&philo->data->print);
+		pthread_mutex_unlock(&philo->data.print);
 	}
 	else
 		return ;

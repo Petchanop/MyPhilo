@@ -6,28 +6,28 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 21:33:02 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/12/01 18:37:51 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/12/01 19:31:48 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	monitor_die(t_philo *philo)
+void	monitor_die(t_philo *philo, t_data *data)
 {
 	int	i;
 
 	i = 0;
 	while (1)
 	{
-		if (i == philo->data->num_fork)
+		if (i == data->num_fork)
 			i = 0;
-		if (check_philo(&philo[i]))
+		if (check_philo(&philo[i], data))
 			break ;
 		i++;
 	}
-	if (!pthread_mutex_lock(&philo->data->print))
+	if (!pthread_mutex_lock(&philo->data.print))
 	{
-		if (philo->data->num_philo == philo->data->eat)
+		if (philo->data.num_philo == philo->data.eat)
 		{
 			get_time(philo);
 			printf("%lu ms All philo was eat enough\n", philo->time);
@@ -35,8 +35,8 @@ void	monitor_die(t_philo *philo)
 		else
 			printf("%s%lu ms %d has died\n", RED, philo[i].time, philo[i].id);
 	}
-	pthread_mutex_unlock(&philo->data->print);
-	pthread_mutex_destroy(&philo->data->print);
+	pthread_mutex_unlock(&philo->data.print);
+	pthread_mutex_destroy(&philo->data.print);
 }
 
 void	do_routines(t_data *data, t_philo *th)
@@ -55,5 +55,5 @@ void	do_routines(t_data *data, t_philo *th)
 			printf("Can't create thread number %d\n", i);
 		i++;
 	}
-	monitor_die(th);
+	monitor_die(th, data);
 }

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:22:46 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/12/01 18:38:20 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/12/01 19:32:13 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_data
 typedef struct s_philo
 {
 	pthread_t		philo;
-	t_data			*data;
+	t_data			data;
 	unsigned long	time;
 	int				die;
 	int				eat;
@@ -66,7 +66,7 @@ typedef struct s_philo
 }	t_philo;
 
 void	initialize_data(t_data *data, char **argv);
-void	assign_data(t_data *data, t_philo *arg);
+void	assign_data(t_data data, t_philo *arg);
 void	create_philo(t_data data, t_philo *th);
 void	do_routines(t_data *data, t_philo *philo);
 void	*excute_routines(void *arg);
@@ -79,7 +79,7 @@ void	sleeping(t_philo *philo);
 void	thinking(t_philo *philo);
 void	choose_fork(t_philo *philo, pthread_mutex_t *mutex);
 void	drop_fork(t_philo *philo, pthread_mutex_t *mutex);
-int		check_philo(t_philo *philo);
+int		check_philo(t_philo *philo, t_data *data);
 int		check_input(int argc, char **argv);
 char	*assign_color(char *param);
 

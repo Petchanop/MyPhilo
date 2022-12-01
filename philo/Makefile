@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/08 01:28:49 by npiya-is          #+#    #+#              #
-#    Updated: 2022/11/30 16:29:16 by npiya-is         ###   ########.fr        #
+#    Updated: 2022/12/01 19:03:34 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,8 +40,10 @@ NAME= philo
 
 all: $(NAME)
 
-$(NAME):$(OBJS) $(OBJS_UTILS)
-	$(CC) $(CFLAGS) $(OBJS) $(OBJS_UTILS) -o $(NAME) $(THREAD)
+# $(NAME):$(OBJS) $(OBJS_UTILS)
+# 	$(CC) $(CFLAGS) $(OBJS) $(OBJS_UTILS) -o $(NAME) $(THREAD)
+$(NAME):$(SRCS)
+	$(CC) -g $(CFLAGS) $(SRCS) $(SRCS_UTILS) -o $(NAME) $(THREAD)
 
 clean:
 	rm -rf $(OBJS) $(NAME).dSYM

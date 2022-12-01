@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:43:29 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/12/01 18:54:48 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/12/01 19:51:42 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,13 @@ void	drop_fork(t_philo *philo, pthread_mutex_t *mutex)
 
 void	eating(t_philo *philo)
 {
-	if (!philo->die && philo->data->num_philo != philo->data->eat)
+	if (!philo->die && philo->data.num_philo != philo->data.eat)
 	{
 		print_time(philo, "is eating\n");
-		take_time(philo, philo->data->time_to_eat);
+		take_time(philo, philo->data.time_to_eat);
 		philo->time_not_eat = 0;
 		philo->time_eat = philo->time;
 		philo->num_eat++;
-		pthread_mutex_lock(&philo->data->lock2);
-		if (philo->num_eat == philo->data->num_must_eat)
-			philo->data->eat++;
-		pthread_mutex_unlock(&philo->data->lock2);
 	}
 }
 
@@ -46,16 +42,16 @@ void	take_fork(t_philo *philo)
 {
 	int	fork;
 
-	fork = philo->data->num_fork;
+	fork = philo->data.num_fork;
 	get_time(philo);
-	if (!philo->data->die && philo->data->num_philo != philo->data->eat)
+	if (!philo->data.die && philo->data.num_philo != philo->data.eat)
 	{
-		pthread_mutex_lock(&philo->data->lock);
-		choose_fork(philo, &philo->data->fork[philo->id - 1]);
-		choose_fork(philo, &philo->data->fork[philo->id % fork]);
-		pthread_mutex_unlock(&philo->data->lock);
+		pthread_mutex_lock(&philo->data.lock);
+		choose_fork(philo, &philo->data.fork[philo->id - 1]);
+		choose_fork(philo, &philo->data.fork[philo->id % fork]);
+		pthread_mutex_unlock(&philo->data.lock);
 		eating(philo);
-		drop_fork(philo, &philo->data->fork[philo->id - 1]);
-		drop_fork(philo, &philo->data->fork[philo->id % fork]);
+		drop_fork(philo, &philo->data.fork[philo->id - 1]);
+		drop_fork(philo, &philo->data.fork[philo->id % fork]);
 	}
 }
