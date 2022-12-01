@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 19:09:09 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/12/01 20:03:33 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/12/01 20:31:22 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,13 @@ int	check_philo(t_philo *philo, t_data *data)
 		philo->die = philo->id;
 		return (1);
 	}
-	if (philo->data.num_must_eat && philo->num_eat == philo->data.num_must_eat)
-		philo->data.eat++;
-	if (philo->data.num_philo == philo->data.eat)
+	if (philo->data.num_must_eat && philo->check
+		&& philo->num_eat == philo->data.num_must_eat)
+	{
+		data->eat++;
+		philo->check = 0;
+	}
+	if (philo->data.num_philo == data->eat)
 	{
 		usleep(1000);
 		return (1);

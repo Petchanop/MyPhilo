@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 20:08:32 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/12/01 19:31:19 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/12/01 20:22:04 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,5 @@ void	assign_data(t_data data, t_philo *arg)
 	arg->time_eat = 0;
 	arg->die = 0;
 	arg->eat = 0;
+	arg->check = 1;
 }

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 21:33:02 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/12/01 19:31:48 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/12/01 20:29:39 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	monitor_die(t_philo *philo, t_data *data)
 	}
 	if (!pthread_mutex_lock(&philo->data.print))
 	{
-		if (philo->data.num_philo == philo->data.eat)
+		if (philo->data.num_philo == data->eat)
 		{
 			get_time(philo);
 			printf("%lu ms All philo was eat enough\n", philo->time);

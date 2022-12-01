@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:22:46 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/12/01 19:32:13 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/12/01 20:21:11 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_philo
 	int				time_eat;
 	int				time_not_eat;
 	int				num_eat;
+	int				check;
 	unsigned long	begin;
 }	t_philo;
 
