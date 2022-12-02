@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 21:20:05 by npiya-is          #+#    #+#             */
-/*   Updated: 2022/12/02 11:44:15 by npiya-is         ###   ########.fr       */
+/*   Updated: 2022/12/02 11:47:56 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void	monitor_die(t_philo *philo, t_data data)
 			else if (status > 0)
 			{
 				count++;
-				if (count == data.num_must_eat)
+				if (count == data.num_philo)
 				{
 					get_time(philo, data);
-					printf("%d ms All philo eat enough\n", philo->time);
+					printf("%s%d ms All philo eat enough\n", WHITE, philo->time);
 					break ;
 				}
 			}
